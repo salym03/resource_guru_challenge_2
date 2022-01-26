@@ -33,15 +33,24 @@ const tree = new DivideNode(
 assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
 assert.strictEqual(2, tree.result());
 
+const singleBinaryNodeTree = new AddNode(new ValueNode(1), new ValueNode(2));
+assert.strictEqual("(1 + 2)", singleBinaryNodeTree.toString());
+assert.strictEqual(3, singleBinaryNodeTree.result());
+
 // Binary nodes throw error when params are not instance of Node.
 assert.throws(() => { new AddNode(1, 2) }, createBinaryNodeTypeError());
 assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
 assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
 assert.throws(() => { new MultiplyNode(1, 2) }, createBinaryNodeTypeError());
+// Binary nodes throw error when less than 2 params are passed.
+assert.throws(() => { new MultiplyNode(1) }, createBinaryNodeTypeError());
+assert.throws(() => { new MultiplyNode() }, createBinaryNodeTypeError());
 
 // Value node throws an error when param is not typeof number.
 assert.throws(() => { new ValueNode(new ValueNode(7)) }, createValueNodeTypeError());
 assert.throws(() => { new ValueNode("Not a number") }, createValueNodeTypeError());
+// Value node throws an error when less than 1 param is passed.
+assert.throws(() => { new ValueNode() }, createValueNodeTypeError());
 
 
 
