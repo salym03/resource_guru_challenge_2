@@ -3,10 +3,10 @@ const createValueNodeTypeError = () => new TypeError("Only numbers can be passed
 
 class Node {
   result() {
-    throw new Error ("Function is not implemented");
+    throw new Error("`result` function of Node is not implemented");
   }
   toString() {
-    throw new Error ("Function is not implemented");
+    throw new Error("`toString` function of Node is not implemented");
   }
 }
 
