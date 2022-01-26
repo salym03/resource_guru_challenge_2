@@ -1,5 +1,13 @@
 const assert = require("assert");
-const { AddNode, DivideNode, MultiplyNode, SubtractNode, ValueNode } = require('./expression-tree');
+const {
+  AddNode,
+  DivideNode,
+  MultiplyNode,
+  SubtractNode,
+  ValueNode,
+  createBinaryNodeTypeError,
+  createValueNodeTypeError,
+} = require('./expression-tree');
 
 /*
   We estimate that this should take 30 to 60 minutes, but please take as much or as little time as you need.
@@ -24,6 +32,16 @@ const tree = new DivideNode(
 
 assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
 assert.strictEqual(2, tree.result());
+
+// Binary nodes throw error when params are not instance of Node.
+assert.throws(() => { new AddNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new MultiplyNode(1, 2) }, createBinaryNodeTypeError());
+
+// Value node throws an error when param is not typeof number.
+assert.throws(() => { new ValueNode(new ValueNode(7)) }, createValueNodeTypeError());
+assert.throws(() => { new ValueNode("Not a number") }, createValueNodeTypeError());
 
 
 

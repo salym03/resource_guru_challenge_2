@@ -1,3 +1,6 @@
+const createBinaryNodeTypeError = () => new TypeError("Only intance of Node can be passed to BinaryNodes");
+const createValueNodeTypeError = () => new TypeError("Only numbers can be passed to a ValueNode");
+
 class Node {
   result() {
     throw new Error ("Function is not implemented");
@@ -11,7 +14,7 @@ class BinaryNode extends Node {
   constructor (left, right) {
     super();
     if (!(left instanceof Node) || !(right instanceof Node)) {
-      throw new Error ("Only intance of Node can be passed to BinaryNodes");
+      throw createBinaryNodeTypeError();
     }
 
     this._left = left;
@@ -23,7 +26,7 @@ class ValueNode extends Node {
   constructor(value) {
     super();
     if (typeof value !== 'number') {
-      throw new Error("Only numbers can be passed to a ValueNode");
+      throw createValueNodeTypeError();
     }
     this._value = value;
   }
@@ -61,4 +64,6 @@ module.exports = {
   SubtractNode,
   MultiplyNode,
   DivideNode,
+  createBinaryNodeTypeError,
+  createValueNodeTypeError,
 }
