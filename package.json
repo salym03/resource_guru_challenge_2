@@ -1,0 +1,10 @@
+{
+  "name": "resource_guru_challenge_2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Mario Saly <salymario03@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
