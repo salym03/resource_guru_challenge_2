@@ -39,12 +39,20 @@ assert.strictEqual(3, singleBinaryNodeTree.result());
 
 // Binary nodes throw error when params are not instance of Node.
 assert.throws(() => { new AddNode(1, 2) }, createBinaryNodeTypeError());
-assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
-assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new AddNode(1) }, createBinaryNodeTypeError());
+assert.throws(() => { new AddNode() }, createBinaryNodeTypeError());
+
+assert.throws(() => { new DivideNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new DivideNode(1) }, createBinaryNodeTypeError());
+assert.throws(() => { new DivideNode() }, createBinaryNodeTypeError());
+
 assert.throws(() => { new MultiplyNode(1, 2) }, createBinaryNodeTypeError());
-// Binary nodes throw error when less than 2 params are passed.
 assert.throws(() => { new MultiplyNode(1) }, createBinaryNodeTypeError());
 assert.throws(() => { new MultiplyNode() }, createBinaryNodeTypeError());
+
+assert.throws(() => { new SubtractNode(1, 2) }, createBinaryNodeTypeError());
+assert.throws(() => { new SubtractNode(1) }, createBinaryNodeTypeError());
+assert.throws(() => { new SubtractNode() }, createBinaryNodeTypeError());
 
 // Value node throws an error when param is not typeof number.
 assert.throws(() => { new ValueNode(new ValueNode(7)) }, createValueNodeTypeError());
